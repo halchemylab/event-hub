@@ -1,0 +1,8 @@
+jinja2
+python-frontmatter
+pyyaml
+python-dateutil
+jsonschema
+beautifulsoup4
+readability-lxml
+markdownify

@@ -1,0 +1,48 @@
+required:
+  - title
+  - date
+
+properties:
+  title:
+    type: string
+  date:
+    type: string
+    format: date-time
+  end:
+    type: string
+    format: date-time
+  location:
+    type: string
+  series:
+    type: string
+  partner:
+    type: string
+  cta_label:
+    type: string
+  registration_url:
+    type: string
+  recording_url:
+    type: string
+  linkedin_url:
+    type: string
+  speakers:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        photo:
+          type: string
+  summary:
+    type: string
+  tags:
+    type: array
+    items:
+      type: string
+  source_url:
+    type: string
+  slug:
+    type: string

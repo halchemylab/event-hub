@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<div class="container">
+  <section class="hero">
+    <h1 class="hero-title">Halchemy <span class="gradient-text">Events</span></h1>
+    <p class="hero-lede">Your central hub for all upcoming and past events from Halchemy Labs. Join us to explore the future of technology.</p>
+    <a href="#upcoming-events" class="btn btn-primary">View Upcoming Events</a>
+  </section>
+
+  <div class="filters">
+    <span class="filter-label">Filter by:</span>
+    <div class="filter-group" id="series-filter-group"></div>
+    <div class="filter-group" id="partner-filter-group"></div>
+    <button class="btn btn-secondary" id="reset-filters">Reset Filters</button>
+  </div>
+
+  <section id="upcoming-events">
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="event-grid" id="upcoming-events-grid">
+      {% assign upcoming_events = site.events | where_exp:"event", "event.date >= site.time" | sort: "date" %}
+      {% for event in upcoming_events %}
+        {% include event_card.html event=event %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <section id="past-events">
+    <h2 class="section-title">Past Events</h2>
+    <div class="event-grid" id="past-events-grid">
+      {% assign past_events = site.events | where_exp:"event", "event.date < site.time" | sort: "date" | reverse %}
+      {% for event in past_events %}
+        {% include event_card.html event=event %}
+      {% endfor %}
+    </div>
+  </section>
+</div>

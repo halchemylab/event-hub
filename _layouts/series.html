@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<div class="container">
+  <header class="series-header">
+    <h1 class="series-title">{{ page.title }}</h1>
+    <p class="series-description">{{ page.description }}</p>
+    {% if page.subscribe_url %}
+      <a href="{{ page.subscribe_url }}" class="btn btn-primary">Subscribe</a>
+    {% endif %}
+  </header>
+
+  {% assign series_events = site.events | where:"series", page.slug | sort: "date" %}
+  {% assign upcoming_events = series_events | where_exp:"event", "event.date >= site.time" %}
+  {% assign past_events = series_events | where_exp:"event", "event.date < site.time" | reverse %}
+
+  {% if upcoming_events.size > 0 %}
+    <section>
+      <h2 class="section-title">Next Event</h2>
+      <div class="event-grid">
+        {% for event in upcoming_events limit:1 %}
+          {% include event_card.html event=event %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if past_events.size > 0 %}
+    <section>
+      <h2 class="section-title">Past Sessions</h2>
+      <div class="event-grid">
+        {% for event in past_events %}
+          {% include event_card.html event=event %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+</div>

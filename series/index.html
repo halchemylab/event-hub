@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<div class="container">
+  <h1 class="page-title">Event Series</h1>
+  <p class="page-description">Browse our recurring event series.</p>
+  <div class="series-grid">
+    {% for series in site.series %}
+      <a href="{{ series.url | relative_url }}" class="series-card">
+        <h2 class="series-title">{{ series.title }}</h2>
+        <p>{{ series.description }}</p>
+      </a>
+    {% endfor %}
+  </div>
+</div>

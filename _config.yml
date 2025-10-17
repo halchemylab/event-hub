@@ -1,0 +1,44 @@
+title: Halchemy Events
+description: "The canonical event hub for Halchemy Labs."
+baseurl: "/halchemy-events" # Change to "" if using a custom domain
+url: "https://halchemylab.github.io" # Change to your custom domain if you have one
+repository: halchemylab/halchemy-events
+
+# Collections
+collections:
+  events:
+    output: true
+    permalink: /events/:slug/
+  series:
+    output: true
+    permalink: /series/:slug/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "events"
+    values:
+      layout: "event"
+  - scope:
+      path: ""
+      type: "series"
+    values:
+      layout: "series"
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Exclude from processing
+exclude:
+  - .github/
+  - scripts/
+  - templates/
+  - inbox/
+  - schema/
+  - README.md
+  - requirements.txt
+  - CNAME

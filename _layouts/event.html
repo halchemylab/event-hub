@@ -1,0 +1,57 @@
+---
+layout: default
+---
+
+<article class="container event-page">
+  <header class="event-header">
+    <h1 class="event-title">{{ page.title }}</h1>
+    <div class="event-meta">
+      <span>{{ page.date | date: "%A, %B %d, %Y" }}</span>
+      <span>{{ page.location }}</span>
+      {% if page.partner %}<span>In partnership with {{ page.partner }}</span>{% endif %}
+    </div>
+    <div class="event-cta">
+      {% if page.date >= site.time %}
+        <a href="{{ page.registration_url }}" class="btn btn-primary">{{ page.cta_label | default: "Register" }}</a>
+      {% elsif page.recording_url %}
+        <a href="{{ page.recording_url }}" class="btn btn-primary">Watch Recording</a>
+        <span class="badge">Closed</span>
+      {% else %}
+        <span class="badge">Closed</span>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="event-content">
+    <div class="event-body">
+      {{ content }}
+    </div>
+    {% if page.speakers %}
+    <aside class="event-sidebar">
+      <h2 class="sidebar-title">Speakers</h2>
+      <div class="speakers-grid">
+        {% for speaker in page.speakers %}
+        <div class="speaker-card">
+          {% if speaker.photo %}<img src="{{ speaker.photo }}" alt="{{ speaker.name }}" class="speaker-photo">{% endif %}
+          <h3 class="speaker-name">{{ speaker.name }}</h3>
+          <p class="speaker-title">{{ speaker.title }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </aside>
+    {% endif %}
+  </div>
+
+  {% if page.recording_url and page.recording_url contains "youtube.com" %}
+  <div class="video-embed">
+    <iframe src="https://www.youtube.com/embed/{{ page.recording_url | split: 'v=' | last }}" frameborder="0" allowfullscreen></iframe>
+  </div>
+  {% endif %}
+
+  {% if page.linkedin_url %}
+  <div class="secondary-cta">
+    <a href="{{ page.linkedin_url }}" class="btn btn-secondary">Join on LinkedIn</a>
+  </div>
+  {% endif %}
+
+</article>

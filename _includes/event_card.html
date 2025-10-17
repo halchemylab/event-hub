@@ -1,0 +1,6 @@
+<a href="{{ include.event.url | relative_url }}" class="event-card" data-series="{{ include.event.series }}" data-partner="{{ include.event.partner }}">
+  <h3>{{ include.event.title }}</h3>
+  <p>{{ include.event.date | date: "%B %d, %Y" }}</p>
+  <p>{{ include.event.location }}</p>
+  <p>{{ include.event.summary }}</p>
+</a>

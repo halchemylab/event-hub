@@ -1,0 +1,7 @@
+---
+{% for key, value in metadata.items() %}
+{{ key }}: {{ value | tojson }}
+{% endfor %}
+---
+
+{{ body }}
