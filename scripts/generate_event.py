@@ -17,6 +17,9 @@ def main():
     with open(SCHEMA_FILE, 'r') as f:
         schema = yaml.safe_load(f)
 
+    # Ensure the output directory exists
+    os.makedirs(EVENTS_DIR, exist_ok=True)
+
     # Process inbox files
     for inbox_type in ["internal", "external"]:
         inbox_path = os.path.join(INBOX_DIR, inbox_type)
