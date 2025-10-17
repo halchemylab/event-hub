@@ -1,8 +1,8 @@
 title: Halchemy Events
 description: "The canonical event hub for Halchemy Labs."
-baseurl: "/halchemy-events" # Change to "" if using a custom domain
+baseurl: "/event-hub" # Change to "" if using a custom domain
 url: "https://halchemylab.github.io" # Change to your custom domain if you have one
-repository: halchemylab/halchemy-events
+repository: halchemylab/event-hub
 
 # Collections
 collections:
