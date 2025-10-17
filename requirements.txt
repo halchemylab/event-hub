@@ -6,3 +6,4 @@ jsonschema
 beautifulsoup4
 readability-lxml
 markdownify
+python-slugify
