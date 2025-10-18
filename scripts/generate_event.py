@@ -30,6 +30,11 @@ def main():
                 # Parse text
                 metadata = parse_text(content)
 
+                # If there's no title, skip this file
+                if not metadata.get('title'):
+                    print(f"Skipping {filename} because it has no title.")
+                    continue
+
                 # Optional LLM pass
                 llm_response = get_llm_response(content)
                 if llm_response:

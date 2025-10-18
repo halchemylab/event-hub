@@ -21,8 +21,10 @@ def parse_text(text):
     # Location
     for line in lines:
         if re.search(r'(location|where):', line, re.IGNORECASE):
-            metadata['location'] = line.split(':', 1)[1].strip()
-            break
+            parts = line.split(':', 1)
+            if len(parts) > 1:
+                metadata['location'] = parts[1].strip()
+                break
 
     # URLs
     urls = re.findall(r'https?://\S+', text)
