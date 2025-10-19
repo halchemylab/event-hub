@@ -28,6 +28,10 @@ jobs:
         with:
           ruby-version: 3.0 # Or your desired Ruby version
           bundler-cache: true # runs 'bundle install' and caches installed gems
+      - name: Print Jekyll version and gems
+        run: |
+          bundle exec jekyll --version
+          bundle list
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
