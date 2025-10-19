@@ -1,7 +1,6 @@
 import os
 import json
 import yaml
-from jinja2 import Template
 import frontmatter
 from slugify import slugify
 from parse_text import parse_text
@@ -9,7 +8,6 @@ from providers import get_llm_response
 
 INBOX_DIR = "inbox"
 EVENTS_DIR = "_events"
-TEMPLATES_DIR = "templates"
 SCHEMA_FILE = "schema/event.schema.yaml"
 
 def main():
@@ -32,6 +30,11 @@ def main():
                 # Parse text
                 metadata = parse_text(content)
 
+                # If there's no title, skip this file
+                if not metadata.get('title'):
+                    print(f"Skipping {filename} because it has no title.")
+                    continue
+
                 # Optional LLM pass
                 llm_response = get_llm_response(content)
                 if llm_response:
@@ -51,16 +54,14 @@ def main():
                 if 'slug' not in metadata:
                     metadata['slug'] = slugify(metadata['title'])
 
-                # Render template
-                with open(os.path.join(TEMPLATES_DIR, "event_page.md.j2"), 'r') as f:
-                    template = Template(f.read())
-                
-                rendered_content = template.render(metadata=metadata, body=body)
+                # Create a frontmatter Post object
+                post = frontmatter.Post(body)
+                post.metadata = metadata
 
                 # Write event file
                 event_filepath = os.path.join(EVENTS_DIR, f"{metadata['slug']}.md")
                 with open(event_filepath, 'w') as f:
-                    f.write(rendered_content)
+                    f.write(frontmatter.dumps(post))
 
                 print(f"Generated event: {event_filepath}")
 
