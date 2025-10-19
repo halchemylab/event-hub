@@ -1,6 +1,16 @@
 <a href="{{ include.event.url | relative_url }}" class="event-card" data-series="{{ include.event.series }}" data-partner="{{ include.event.partner }}">
-  <h3>{{ include.event.title }}</h3>
-  <p>{{ include.event.date | date: "%B %d, %Y" }}</p>
-  <p>{{ include.event.location }}</p>
-  <p>{{ include.event.summary }}</p>
+  <div class="event-card-image-wrapper">
+    <img src="{{ include.event.image | default: '/assets/img/default-event-image.svg' | relative_url }}" alt="{{ include.event.title }}" class="event-card-image">
+  </div>
+  <div class="event-card-content">
+    <div class="event-card-date">
+      <span class="month">{{ include.event.date | date: "%b" }}</span>
+      <span class="day">{{ include.event.date | date: "%d" }}</span>
+    </div>
+    <div class="event-card-details">
+      <h3>{{ include.event.title }}</h3>
+      <p class="location">{{ include.event.location }}</p>
+      <p class="summary">{{ include.event.summary }}</p>
+    </div>
+  </div>
 </a>

@@ -124,17 +124,69 @@ body {
 .event-card {
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 0.5rem;
-  padding: 1.5rem;
+  border-radius: 0.75rem;
   text-decoration: none;
   color: var(--text);
   transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .event-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
   border-color: var(--accent-1);
-  box-shadow: 0 0 10px var(--accent-1);
+  box-shadow: 0 5px 15px rgba(106, 0, 244, 0.3);
+}
+
+.event-card-image-wrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.event-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover .event-card-image {
+  transform: scale(1.05);
+}
+
+.event-card-content {
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-grow: 1;
+}
+
+.event-card-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-weight: 600;
+  text-align: center;
+}
+
+.event-card-date .month {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.event-card-date .day {
+  font-size: 2rem;
+  color: var(--accent-2);
+  line-height: 1;
+}
+
+.event-card-details {
+  display: flex;
+  flex-direction: column;
 }
 
 .event-card h3 {
@@ -145,6 +197,16 @@ body {
 .event-card p {
   margin: 0;
   color: var(--muted);
+}
+
+.event-card .location {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.event-card .summary {
+  font-size: 1rem;
+  flex-grow: 1;
 }
 
 .site-footer {
