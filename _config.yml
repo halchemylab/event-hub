@@ -42,3 +42,4 @@ exclude:
   - README.md
   - requirements.txt
   - CNAME
+  - vendor/
