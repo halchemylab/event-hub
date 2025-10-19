@@ -19,7 +19,8 @@ layout: default
   <section id="upcoming-events">
     <h2 class="section-title">Upcoming Events</h2>
     <div class="event-grid" id="upcoming-events-grid">
-      {% for event in site.events %}
+      {% assign upcoming_events = site.events | where_exp:"item", "item.date >= site.time" | sort: "date" %}
+      {% for event in upcoming_events %}
         {% include event_card.html event=event %}
       {% endfor %}
     </div>
@@ -28,7 +29,8 @@ layout: default
   <section id="past-events">
     <h2 class="section-title">Past Events</h2>
     <div class="event-grid" id="past-events-grid">
-      {% for event in site.events %}
+      {% assign past_events = site.events | where_exp:"item", "item.date < site.time" | sort: "date" | reverse %}
+      {% for event in past_events %}
         {% include event_card.html event=event %}
       {% endfor %}
     </div>
