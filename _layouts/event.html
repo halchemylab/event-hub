@@ -11,16 +11,7 @@ layout: default
       {% if page.partner %}<span>In partnership with {{ page.partner }}</span>{% endif %}
     </div>
     <div class="event-cta">
-      {% assign event_date = page.date | date: '%s' %}
-      {% assign now = 'now' | date: '%s' %}
-      {% if event_date >= now %}
-        <a href="{{ page.registration_url }}" class="btn btn-primary">{{ page.cta_label | default: "Register" }}</a>
-      {% elsif page.recording_url %}
-        <a href="{{ page.recording_url }}" class="btn btn-primary">Watch Recording</a>
-        <span class="badge">Closed</span>
-      {% else %}
-        <span class="badge">Closed</span>
-      {% endif %}
+      <a href="{{ page.registration_url }}" class="btn btn-primary">{{ page.cta_label | default: "Register" }}</a>
     </div>
   </header>
 
