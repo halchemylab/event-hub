@@ -10,7 +10,7 @@ def parse_text(text):
         metadata['title'] = lines[0].strip()
 
     # Date and Time
-    for line in lines:
+    for line in reversed(lines):
         try:
             date = parse(line, fuzzy=True)
             metadata['date'] = date.isoformat()
